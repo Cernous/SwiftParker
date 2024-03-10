@@ -1,4 +1,4 @@
-package com.example.swiftpark.ui.dashboard;
+package com.example.swiftpark.ui.spot;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,7 +10,7 @@ public class DashboardViewModel extends ViewModel {
 
     public DashboardViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("Spots");
     }
 
     public LiveData<String> getText() {
