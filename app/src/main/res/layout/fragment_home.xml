@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eeeeee"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
@@ -28,6 +29,9 @@
         android:layout_marginStart="20dp"
         android:fontFamily="@font/dm_sans_medium"
         android:text="@string/search"
+        android:backgroundTint="#a82d65"
+        android:textAllCaps="false"
+        app:cornerRadius="50dp"
         app:layout_constraintStart_toEndOf="@+id/editAddressText"
         app:layout_constraintTop_toTopOf="@+id/editAddressText" />
 
@@ -76,6 +80,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/search_spots_nearby"
+        android:textAllCaps="false"
+        android:backgroundTint="#a82d65"
+        app:cornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/divider" />
