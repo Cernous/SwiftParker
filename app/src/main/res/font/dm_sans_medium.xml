@@ -3,6 +3,5 @@
     app:fontProviderAuthority="com.google.android.gms.fonts"
     app:fontProviderPackage="com.google.android.gms"
     app:fontProviderQuery="name=DM Sans&amp;weight=500"
-
-   >
 </font-family>
+
