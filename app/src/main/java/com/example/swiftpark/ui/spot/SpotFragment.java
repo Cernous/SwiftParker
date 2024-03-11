@@ -5,39 +5,51 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.swiftpark.DatabaseHelper;
 import com.example.swiftpark.R;
+import com.example.swiftpark.Spot;
 import com.example.swiftpark.databinding.FragmentSpotBinding;
 
-public class SpotFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
+public class SpotFragment extends Fragment {
+    private RecyclerView spotRecycler;
+    private SpotAdapter adapter;
+    private List<Spot> spotList;
     private FragmentSpotBinding binding;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_spot, container, false);
 
-        // Find the Button by its ID
+        View view = inflater.inflate(R.layout.fragment_spot, container, false);
+        spotRecycler = view.findViewById(R.id.spotRecycler);
+        loadSpotRecycler();
+
+
+
         Button button = view.findViewById(R.id.addSpotButton);
 
-        // Set an OnClickListener to handle button clicks
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Action to perform when the button is clicked
-                // For example, you can navigate to another fragment or perform some other action
-                Toast.makeText(getActivity(), "Button clicked", Toast.LENGTH_SHORT).show();
-
-
                         insertSpotDialog dialog = new insertSpotDialog();
                         dialog.show(getActivity().getSupportFragmentManager(), "InsertSpot");
              
@@ -48,6 +60,12 @@ public class SpotFragment extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loadSpotRecycler();
+    }
 
     @Override
     public void onDestroyView() {
@@ -57,18 +75,19 @@ public class SpotFragment extends Fragment {
 
 
 
+    public void loadSpotRecycler(){
+        spotRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        spotList = new ArrayList<>();
+        DatabaseHelper db = new DatabaseHelper(getActivity());
+        spotList = db.getAllSpots();
+        adapter = new SpotAdapter(spotList);
+        spotRecycler.setAdapter(adapter);
+
+        adapter.setOnDeleteButtonClickListener(spotId -> {
+            db.deleteSpot(spotId);
+        });
+
+    }
 
 
-//    DashboardViewModel dashboardViewModel =
-//            new ViewModelProvider(this).get(DashboardViewModel.class);
-//
-//
-//
-//
-//    binding = FragmentSpotBinding.inflate(inflater, container, false);
-//    View root = binding.getRoot();
-//
-//
-//        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-//        return root;
 }

@@ -3,14 +3,21 @@ package com.example.swiftpark;
 public class Spot {
     private int id;
     private String name;
+    private String address;
     private String available;
-    private int check;
 
-    public Spot(int id, String name, String available, int check){
+
+    public Spot(String name, String address){
+        this.name = name;
+        this.address = address;
+    }
+
+    public Spot(int id, String name, String address, String available){
         this.id = id;
-        this.name =name;
+        this.name = name;
+        this.address = address;
         this.available = available;
-        this.check = check;
+
     }
 
     public int getId() {
@@ -29,6 +36,14 @@ public class Spot {
         this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getAvailable() {
         return available;
     }
@@ -37,11 +52,5 @@ public class Spot {
         this.available = available;
     }
 
-    public int getCheck() {
-        return check;
-    }
 
-    public void setCheck(int check) {
-        this.check = check;
-    }
 }

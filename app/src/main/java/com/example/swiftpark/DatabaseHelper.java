@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -29,10 +30,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Creates Spots Table
         String CREATE_SPOT_TABLE = "CREATE TABLE " + Config.TABLE_SPOT + " ("
-                + Config.COLUMN_SPOT_ID + " INTEGER PRIMARY KEY, "
+                + Config.COLUMN_SPOT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Config.COLUMN_SPOT_NAME + " TEXT NOT NULL, "
-                + Config.COLUMN_SPOT_AVAILABLE + " TEXT NOT NULL, "
-                + Config.COLUMN_SPOT_CHECK + " INTEGER NOT NULL)";
+                + Config.COLUMN_SPOT_ADDRESS + " TEXT NOT NULL, "
+                + Config.COLUMN_SPOT_AVAILABLE + " TEXT);";
+
 
         sqLiteDatabase.execSQL(CREATE_SPOT_TABLE);
     }
@@ -48,10 +50,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int id = -1;
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Config.COLUMN_SPOT_ID, spot.getId());
         contentValues.put(Config.COLUMN_SPOT_NAME, spot.getName());
-        contentValues.put(Config.COLUMN_SPOT_AVAILABLE, spot.getAvailable());
-        contentValues.put(Config.COLUMN_SPOT_CHECK, spot.getCheck());
+        contentValues.put(Config.COLUMN_SPOT_ADDRESS, spot.getAddress());
+        // contentValues.put(Config.COLUMN_SPOT_AVAILABLE, spot.getAvailable());
 
 
         try{
@@ -68,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // Retrievs all spots
-    public List<Spot> getAllProfiles(){
+    public List<Spot> getAllSpots(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         List<Spot> spotList = new ArrayList<>();
@@ -80,9 +81,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     do{
                         @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_SPOT_ID));
                         @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(Config.COLUMN_SPOT_NAME));
+                        @SuppressLint("Range") String address = cursor.getString(cursor.getColumnIndex(Config.COLUMN_SPOT_ADDRESS));
                         @SuppressLint("Range") String available = cursor.getString(cursor.getColumnIndex(Config.COLUMN_SPOT_AVAILABLE));
-                        @SuppressLint("Range") int check = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_SPOT_CHECK));
-                        Spot spot = new Spot(id, name, available, check);
+                        Spot spot = new Spot(id, name, address, available);
                         spotList.add(spot);
                     }while (cursor.moveToNext());
                     return spotList;
@@ -97,36 +98,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    /*
-    // returns all access records for the access listview in the profileActivity
-    public List<String> getAccessRecordsForProfile(int profileId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<String> accessRecords = new ArrayList<>();
 
-        // Sorts list by time
-        String query = "SELECT " + Config.COLUMN_ACCESS_TYPE + ", " + Config.COLUMN_ACCESS_TIME + " FROM " + Config.TABLE_ACCESS +
-                " WHERE " + Config.COLUMN_ACCESS_PROFILE_ID + " = " + profileId +
-                " ORDER BY " + Config.COLUMN_ACCESS_TIME + " DESC";
 
-        Cursor cursor = db.rawQuery(query, null);
-
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                @SuppressLint("Range") String accessType = cursor.getString(cursor.getColumnIndex(Config.COLUMN_ACCESS_TYPE));
-                @SuppressLint("Range") String accessTime = cursor.getString(cursor.getColumnIndex(Config.COLUMN_ACCESS_TIME));
-                accessRecords.add(accessType + ": " + accessTime);
-            } while (cursor.moveToNext());
-
-            cursor.close();
-        }
-
-        return accessRecords;
-    }
-
-    */
-
-    // deletes profile
-    public void deleteProfile(int id) {
+    // deletes a spot
+    public void deleteSpot(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String whereClause = "id = ?";
@@ -145,6 +120,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Operation Failed", Toast.LENGTH_LONG).show();
         }
     }
+
+
+
+
+
+
+
+
+
 
 /*
     // whenever this function is called it will add a new entry for the id and desired type depending on where it was called
