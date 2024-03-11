@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/greetText"
-        android:layout_width="357dp"
+        android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
