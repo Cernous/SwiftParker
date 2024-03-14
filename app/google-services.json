@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "870001745556",
+    "project_id": "swiftpark-1ee45",
+    "storage_bucket": "swiftpark-1ee45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870001745556:android:c42b672fa35d203cb01e81",
+        "android_client_info": {
+          "package_name": "com.example.swiftpark"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO1Jis4hthAv_5FXQOENDM94wacThMIyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
