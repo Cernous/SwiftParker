@@ -36,11 +36,16 @@ android {
     }
 }
 
+//repositories {
+//    google()
+//    mavenCentral()
+//}
+
 dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
     implementation("com.google.firebase:firebase-auth")
-
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)

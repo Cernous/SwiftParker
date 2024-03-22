@@ -4,129 +4,110 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eeeeee"
+    android:background="@drawable/aura"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/greetText"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/dm_sans_medium"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextSizeCheck"
-        tools:text="Welcome, Placeholder" />
-
-    <Button
-        android:id="@+id/buttonSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:fontFamily="@font/dm_sans_medium"
-        android:text="@string/search"
-        android:backgroundTint="#a82d65"
-        android:textAllCaps="false"
-        app:cornerRadius="50dp"
-        app:layout_constraintStart_toEndOf="@+id/editAddressText"
-        app:layout_constraintTop_toTopOf="@+id/editAddressText" />
-
-    <EditText
-        android:id="@+id/editAddressText"
-        android:layout_width="252dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="48dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:fontFamily="@font/dm_sans_medium"
-        android:hint="@string/address"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greetText" />
-
-    <TextView
-        android:id="@+id/instructionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/dm_sans_medium"
-        android:text="@string/find_parking_spots_in_the_search_location"
-        app:layout_constraintBottom_toTopOf="@+id/editAddressText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greetText"
-        app:layout_constraintVertical_bias="0.536" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editAddressText" />
-
-    <Button
-        android:id="@+id/nearbySearchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/search_spots_nearby"
-        android:textAllCaps="false"
-        android:backgroundTint="#a82d65"
-        app:cornerRadius="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/favoriteFrame"
-        android:layout_width="385dp"
-        android:layout_height="456dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:background="@drawable/layout_roundedbg"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nearbySearchButton"
-        app:layout_constraintVertical_bias="0.13">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/favoriteText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+        <EditText
+            android:id="@+id/editAddressText"
+            android:layout_width="277dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:ems="10"
             android:fontFamily="@font/dm_sans_medium"
-            android:text="@string/favorites"
-            android:textSize="24sp"
+            android:hint="@string/address"
+            android:inputType="text"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <HorizontalScrollView
-            android:id="@+id/favoriteSpacesScrollView"
-            android:layout_width="374dp"
-            android:layout_height="384dp"
+        <Button
+            android:id="@+id/buttonSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#a82d65"
+            android:fontFamily="@font/dm_sans_medium"
+            android:text="@string/search"
+            android:textAllCaps="false"
+            app:cornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/editAddressText"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/HorizontalHomedivider"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
-            android:contentDescription="@string/favorite_spots"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/favoriteText" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/editAddressText" />
 
+        <TextView
+            android:id="@+id/greetText"
+            android:layout_width="364dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/dm_sans_medium"
+            android:text="@string/welcome_placeholder"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/HorizontalHomedivider" />
+
+        <TextView
+            android:id="@+id/subGreetText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/dm_sans_medium"
+            android:text="@string/get_to_a_parking_spot_quickly_and_easily"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/greetText" />
+
+        <TextView
+            android:id="@+id/suggestionsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/dm_sans_medium"
+            android:text="@string/suggestions"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subGreetText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:id="@+id/suggestionRecycleView"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/suggestionsText" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
