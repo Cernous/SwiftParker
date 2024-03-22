@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">SwiftPark</string>
     <string name="title_home">Home</string>
-    <string name="address">Address</string>
+    <string name="address">Where to park?</string>
     <string name="search">Search</string>
-    <string name="search_spots_nearby">Search Spots Nearby</string>
     <string name="find_parking_spots_in_the_search_location">Find Parking Spots in the Search Location</string>
     <string name="favorites">Favorites</string>
     <string name="favorite_spots">Favorite Spots</string>
@@ -20,4 +19,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="welcome_placeholder">Welcome, Placeholder</string>
+    <string name="get_to_a_parking_spot_quickly_and_easily">Get to a parking spot quickly and easily!</string>
+    <string name="suggestions">Suggestions</string>
 </resources>
