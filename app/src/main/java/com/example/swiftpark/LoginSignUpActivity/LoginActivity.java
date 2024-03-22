@@ -1,4 +1,4 @@
-package com.example.swiftpark;
+package com.example.swiftpark.LoginSignUpActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +13,13 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.swiftpark.MainActivity;
+import com.example.swiftpark.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,35 +32,50 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_login);
-
         if(getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
-            login_email = findViewById(R.id.login_email);
-            login_password = findViewById(R.id.login_password);
-            login_button = findViewById(R.id.login_button);
-            register_button = findViewById(R.id.register_button);
+        login_email = findViewById(R.id.login_email);
+        login_password = findViewById(R.id.login_password);
+        login_button = findViewById(R.id.login_button);
+        register_button = findViewById(R.id.register_button);
+
+        mAuth = FirebaseAuth.getInstance();
 
 
-            register_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                    startActivity(intent);
-                }
-            });
-            login_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+
+        login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                     loginUserAccount();
-                }
-            });
+
+            }
+        });
+        register_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+
+            }
+        });
         }
 
-        private void loginUserAccount() {
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            // do nothing
+        }
+    }
+
+
+
+    private void loginUserAccount() {
         String email, password;
         email = login_email.getText().toString();
         password = login_password.getText().toString();
@@ -78,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
@@ -86,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
                                         "Login successful!",
                                         Toast.LENGTH_LONG)
                                 .show();
+
+                        FirebaseUser user = mAuth.getCurrentUser();
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
@@ -97,6 +117,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
             });
+
+
         }
 
 
