@@ -16,21 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/deleteSpotButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="0dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#9c1640 "
-            android:elevation="8dp"
-            android:text="Delete Spot"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:cornerRadius="50dp" />
-
         <TextView
             android:id="@+id/textViewAddress"
             android:layout_width="match_parent"
