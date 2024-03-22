@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class insertSpotDialog extends DialogFragment {
     private ReadAndWrite readAndWrite;
     private SpotFragment spotFragment;
+    private Spot spot;
 
     public insertSpotDialog(SpotFragment spotFragment) {
         this.spotFragment = spotFragment;
@@ -57,6 +58,7 @@ public class insertSpotDialog extends DialogFragment {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         if (user != null) {
                             String uid = user.getUid();
+
                             readAndWrite.writeNewSpot(uid, name, address);
                             Toast.makeText(getActivity(), "Spot Saved !", Toast.LENGTH_LONG).show();
                             if (spotFragment != null) {

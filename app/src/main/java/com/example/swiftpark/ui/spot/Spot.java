@@ -11,11 +11,13 @@ public class Spot {
         // empty constructor
     }
 
+
+
     public Spot(String name, String address){
+
         this.name = name;
         this.address = address;
     }
-
 
 
 

@@ -24,8 +24,13 @@ public class ReadAndWrite {
     }
 
     public void writeNewSpot(String userId, String name, String address) {
-        Spot spot = new Spot(name, address);
+        Spot spot = new Spot(name,address);
         mDatabase.child("spots").child(userId).push().setValue(spot);
+    }
+
+    public void deleteSpot(String userId, String spotId){
+        mDatabase.child("spots").child(userId).child(spotId).removeValue();
+
     }
 
 
