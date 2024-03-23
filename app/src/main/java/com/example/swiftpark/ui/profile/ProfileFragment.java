@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ProfileFragment extends Fragment {
     private EditText profileNameEditText, emailEditText;
-    private Button saveProfileButton, logoutButton;
+    private Button saveProfileButton, logoutButton, editProfileButton;
 
     FirebaseDatabase firebaseDatabase;
 
@@ -38,9 +38,8 @@ public class ProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        profileNameEditText = view.findViewById(R.id.profileNameEditText);
-        emailEditText = view.findViewById(R.id.emailEditText);
-        saveProfileButton = view.findViewById(R.id.editProfileButton);
+
+        editProfileButton = view.findViewById(R.id.editProfileButton);
         logoutButton = view.findViewById(R.id.logoutButton);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -48,6 +47,8 @@ public class ProfileFragment extends Fragment {
         profile = new Profile();
 
         readAndWrite = new ReadAndWrite(databaseReference);
+
+
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

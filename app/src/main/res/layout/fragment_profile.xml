@@ -16,6 +16,7 @@
         android:layout_marginTop="16dp"
         android:text="Profile"
         android:textColor="#000000"
+        android:fontFamily="@font/whitney"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,41 +25,83 @@
         android:id="@+id/editProfileButton"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@color/white"
         android:text="Edit Profile"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:cornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/white"
+        android:text="Settings"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+    <Button
+        android:id="@+id/changePasswordButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/white"
+        android:text="Change Password"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsButton" />
 
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/white"
         android:text="Logout"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:cornerRadius="20dp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordButton" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/profilePicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:src="@tools:sample/avatars" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
