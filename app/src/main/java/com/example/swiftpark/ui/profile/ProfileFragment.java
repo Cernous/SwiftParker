@@ -40,7 +40,7 @@ public class ProfileFragment extends Fragment {
 
         profileNameEditText = view.findViewById(R.id.profileNameEditText);
         emailEditText = view.findViewById(R.id.emailEditText);
-        saveProfileButton = view.findViewById(R.id.saveProfileButton);
+        saveProfileButton = view.findViewById(R.id.editProfileButton);
         logoutButton = view.findViewById(R.id.logoutButton);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
