@@ -8,7 +8,7 @@
     android:gravity="center"
     tools:context=".LoginSignUpActivity.LoginActivity"
     android:orientation="vertical"
-    android:background="@drawable/aura">
+    android:background="@drawable/signinbackground">
 
     <TextView
         android:layout_width="match_parent"
@@ -83,38 +83,38 @@
                 android:inputType="textPassword"
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"/>
+
+
             <Button
+                android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Continue"
-                android:id="@+id/logoutButton"
-                android:textSize="18sp"
+                android:fontFamily="@font/whitney"
+                android:textSize="20sp"
+                android:elevation="24dp"
                 android:textAllCaps="false"
+                android:textColor="@color/white"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="#38AAE4"
                 app:cornerRadius = "20dp"/>
 
-            <TextView
-                android:id="@+id/signupRedirectText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:padding="8dp"
-                android:text="Don't have an account? Sign Up"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+
             <Button
+                android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="go to register"
-                android:id="@+id/register_button"
-                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:elevation="0dp"
+                android:backgroundTint="@color/white"
+                android:shadowColor="@color/white"
+                android:text="Don't have an account? Sign Up"
                 android:textAllCaps="false"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/black"
-                app:cornerRadius = "20dp"/>
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:cornerRadius="20dp" />
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 
