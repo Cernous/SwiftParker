@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eeeeee"
+    android:background="@drawable/layout_roundedbg"
     tools:context=".ui.spot.SpotFragment">
 
     <TextView
@@ -16,7 +16,6 @@
         android:fontFamily="@font/dm_sans_medium"
         android:lineSpacingExtra="8sp"
         android:text="Favorite Spots"
-        android:textColor="#000000"
         android:textFontWeight="600"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"

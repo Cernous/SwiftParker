@@ -11,9 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="344dp"
         android:layout_height="700dp"
-
-        android:background="@drawable/dialog_bg"
-        android:backgroundTint="#FFFFFF">
+        android:background="@drawable/dialog_bg">
 
 
         <EditText
@@ -49,7 +47,6 @@
             android:background="@android:color/transparent"
             android:elevation="0dp"
             android:text="X"
-            android:textColor="#000000"
             android:textSize="20sp"
             app:cornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +73,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:text="Add a Spot"
-            android:textColor="#000000"
+            android:background="@color/white"
             android:textSize="35sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

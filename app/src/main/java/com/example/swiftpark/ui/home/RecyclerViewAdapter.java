@@ -25,12 +25,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     //vars
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
+    private ArrayList<String> mAddresses = new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> names, ArrayList<String> imageUrls) {
+    public RecyclerViewAdapter(Context context, ArrayList<String> names, ArrayList<String> imageUrls, ArrayList<String> addresses) {
         mNames = names;
         mImageUrls = imageUrls;
         mContext = context;
+        mAddresses = addresses;
     }
 
     @NonNull
@@ -50,6 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .into(holder.image);
 
         holder.name.setText(mNames.get(position));
+        holder.address.setText(mAddresses.get(position));
 
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +72,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         ImageView image;
         TextView name;
+        TextView address;
 
         public ViewHolder(View itemView){
             super(itemView);
+            address=itemView.findViewById(R.id.item_address);
             image=itemView.findViewById(R.id.item_image);
             name=itemView.findViewById(R.id.item_name);
         }

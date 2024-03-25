@@ -1,12 +1,7 @@
 package com.example.swiftpark.Database;
 
-import static java.security.AccessController.getContext;
-
-import android.widget.Toast;
-
 import com.example.swiftpark.ui.profile.Profile;
 import com.example.swiftpark.ui.spot.Spot;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

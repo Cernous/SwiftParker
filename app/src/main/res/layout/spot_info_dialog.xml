@@ -17,21 +17,12 @@
             android:layout_height="match_parent"
             android:background="@drawable/cardview_w_border">
 
-            <ImageView
-                android:id="@+id/item_image"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:layout_marginHorizontal="72dp"
-                android:layout_marginTop="40dp"
-                android:src="@drawable/aura" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Placeholder"
-                android:id="@+id/item_name"
+                android:id="@+id/dialog_name"
                 android:background="@color/white"
-                android:layout_below="@+id/item_image"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:layout_marginTop="20dp"
@@ -42,14 +33,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="200 Baker St."
-                android:id="@+id/item_address"
+                android:id="@+id/dialog_address"
                 android:background="@color/white"
-                android:layout_below="@+id/item_name"
+                android:layout_below="@+id/dialog_name"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/dm_sans_medium"
                 android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spots Available: 50/70"
+                android:background="@color/white"
+                android:id="@+id/availabilities"
+                android:layout_below="@+id/dialog_address"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/dm_sans_medium"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/black"
+                android:background="@android:color/transparent"
+                android:elevation="0dp"
+                android:text="X"
+                android:textSize="20sp"
+                app:cornerRadius="50dp"
+                android:layout_marginRight="10dp" />
 
         </RelativeLayout>
 
