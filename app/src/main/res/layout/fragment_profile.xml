@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profileTextView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/profilebackground"
     tools:context=".ui.profile.ProfileFragment">
 
-    <EditText
-        android:id="@+id/profileNameEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="174dp"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="text"
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="40dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/sheep"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:shapeAppearanceOverlay="@style/ImageViewShape" />
 
     <TextView
         android:id="@+id/textView"
@@ -26,40 +34,95 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Profile"
-        android:textColor="#000000"
+        android:textColor="@color/white"
+        android:fontFamily="@font/whitney"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/emailEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="text"
+    <Button
+        android:id="@+id/editProfileButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:text="Edit Profile"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/profileNameTextView" />
 
     <Button
-        android:id="@+id/saveProfileButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="105dp"
-        android:text="Save Profile"
+        android:id="@+id/settingsButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/white"
+        android:text="Settings"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
     <Button
-        android:id="@+id/logoutButton"
+        android:id="@+id/changePasswordButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/white"
+        android:text="Change Password"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsButton" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#38AAE4"
+        android:text="Logout"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordButton" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="409dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="30dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileButton" />
+
+    <TextView
+        android:id="@+id/profileNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Logout"
+        android:fontFamily="@font/whitney"
+        android:textColor="@color/black"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
