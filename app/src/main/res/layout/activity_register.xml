@@ -8,7 +8,7 @@
     android:gravity="center"
     tools:context=".LoginSignUpActivity.LoginActivity"
     android:orientation="vertical"
-    android:background="@drawable/aura">
+    android:background="@drawable/signoutbackground">
 
     <TextView
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/register_email"
+                android:id="@+id/editNameEdit"
                 android:background="@drawable/rounded_editext"
                 android:layout_marginTop="6dp"
                 android:padding="8dp"
@@ -76,7 +76,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/fullnameEditText"
+                android:id="@+id/editEmailEdit"
                 android:background="@drawable/rounded_editext"
                 android:layout_marginTop="6dp"
                 android:padding="8dp"
@@ -112,19 +112,22 @@
                 android:textSize="18sp"
                 android:textAllCaps="false"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="#9C1640"
                 app:cornerRadius = "20dp"/>
 
-            <TextView
-                android:id="@+id/signupRedirectText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+            <Button
+                android:id="@+id/signInButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:layout_marginTop="10dp"
-                android:padding="8dp"
+                android:backgroundTint="@color/white"
+                android:elevation="0dp"
+                android:shadowColor="@color/white"
                 android:text="Have an account? Sign in"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="15sp"
+                app:cornerRadius="20dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

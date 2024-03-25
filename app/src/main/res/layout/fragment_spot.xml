@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/layout_roundedbg"
+    android:background="@drawable/spotsbackground"
     tools:context=".ui.spot.SpotFragment">
 
     <TextView
@@ -13,10 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/dm_sans_medium"
-        android:lineSpacingExtra="8sp"
-        android:text="Favorite Spots"
-        android:textFontWeight="600"
+        android:fontFamily="@font/whitney"
+        android:text="Spots"
+        android:textColor="@color/white"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,9 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="75dp"
-        android:backgroundTint="#a82d65"
+        android:backgroundTint="#9C1640"
         android:elevation="16dp"
         android:text="Add Favourite Spot"
+
         android:textAllCaps="false"
         app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"

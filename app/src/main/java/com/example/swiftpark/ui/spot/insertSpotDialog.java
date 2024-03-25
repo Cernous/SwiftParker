@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class insertSpotDialog extends DialogFragment {
     private ReadAndWrite readAndWrite;
     private SpotFragment spotFragment;
-    private Spot spot;
+    private Button selectButton;
 
     public insertSpotDialog(SpotFragment spotFragment) {
         this.spotFragment = spotFragment;
@@ -41,9 +41,20 @@ public class insertSpotDialog extends DialogFragment {
             EditText addressEditText = root.findViewById(R.id.addressEditText);
             Button saveButton = root.findViewById(R.id.saveButton);
             Button cancelButton = root.findViewById(R.id.cancelButton);
+            selectButton = root.findViewById(R.id.selectButton);
+
+            selectButton.setVisibility(getView().GONE);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         readAndWrite = new ReadAndWrite(databaseReference);
+
+        selectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSecondDialog();
+
+            }
+        });
 
             saveButton.setOnClickListener(new View.OnClickListener() {
 
@@ -79,6 +90,14 @@ public class insertSpotDialog extends DialogFragment {
         return root;
 
     }
+    private void openSecondDialog() {
+        SecondDialogFragment secondDialogFragment = new SecondDialogFragment();
+        secondDialogFragment.show(getChildFragmentManager(), "SecondDialogFragment");
+    }
+
+
+
+
 
 
 
@@ -88,4 +107,5 @@ public class insertSpotDialog extends DialogFragment {
 
 
     }
+
 }
