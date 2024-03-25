@@ -30,8 +30,6 @@ public class ReadAndWrite {
 
     public void getProfile(String userId, ValueEventListener listener){
         DatabaseReference profilesRef = FirebaseDatabase.getInstance().getReference().child("profiles").child(userId);
-
-
         profilesRef.addListenerForSingleValueEvent(listener);
     }
 

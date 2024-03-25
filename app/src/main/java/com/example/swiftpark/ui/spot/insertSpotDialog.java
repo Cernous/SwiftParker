@@ -27,7 +27,6 @@ public class insertSpotDialog extends DialogFragment {
     private ReadAndWrite readAndWrite;
     private SpotFragment spotFragment;
     private Button selectButton;
-    private Spot spot;
 
     public insertSpotDialog(SpotFragment spotFragment) {
         this.spotFragment = spotFragment;

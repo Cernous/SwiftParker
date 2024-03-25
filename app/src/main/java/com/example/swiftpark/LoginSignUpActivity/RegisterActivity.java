@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.swiftpark.Database.ReadAndWrite;
 import com.example.swiftpark.MainActivity;
 import com.example.swiftpark.R;
-import com.example.swiftpark.ui.profile.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -43,8 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        register_email = findViewById(R.id.register_email);
-        fullnameEditText = findViewById(R.id.fullnameEditText);
+        register_email = findViewById(R.id.editNameEdit);
+        fullnameEditText = findViewById(R.id.editEmailEdit);
         register_password = findViewById(R.id.register_password);
         create_account_button = findViewById(R.id.create_account_button);
 

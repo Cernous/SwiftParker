@@ -20,6 +20,7 @@ import com.example.swiftpark.Database.ReadAndWrite;
 import com.example.swiftpark.LoginSignUpActivity.LoginActivity;
 import com.example.swiftpark.R;
 
+import com.example.swiftpark.ui.spot.insertSpotDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,23 +65,18 @@ public class ProfileFragment extends Fragment {
 
         readAndWrite = new ReadAndWrite(databaseReference);
 
+        refreshNameText();
 
 
-        readAndWrite.getProfile(uid, new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String fullName = snapshot.child("name").getValue(String.class);
+        settingsButton.setOnClickListener(v -> {
+            settings dialog = new settings(this);
+            dialog.show(getParentFragmentManager(), "Settings");
+        });
 
-                    profileNameTextView.setText(fullName);
 
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+        editProfileButton.setOnClickListener(v -> {
+            editProfileFragment dialog = new editProfileFragment(this);
+            dialog.show(getParentFragmentManager(), "EditProfile");
         });
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +88,7 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
 
         changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,26 +131,36 @@ public class ProfileFragment extends Fragment {
 
 
 
-//        saveProfileButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String name = profileNameEditText.getText().toString();
-//                String email = emailEditText.getText().toString();
-//                if (TextUtils.isEmpty(name) && TextUtils.isEmpty(email)) {
-//                    Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                    if (user != null) {
-//                        String uid = user.getUid();
-//                        readAndWrite.writeNewUser(uid, name, email);
-//                        Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
-//                      }
-//                }
-//            }
-//
-//        });
         return view;
     }
+
+    public void refreshNameText() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        readAndWrite.getProfile(uid, new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String fullName = snapshot.child("name").getValue(String.class);
+
+                    profileNameTextView.setText(fullName);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
