@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.androidApplication)
     id("com.google.gms.google-services")
@@ -36,14 +37,18 @@ android {
     }
 }
 
+//repositories {
+//    google()
+//    mavenCentral()
+//}
+
 dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
     implementation("com.google.firebase:firebase-auth")
     implementation ("com.firebaseui:firebase-ui-database:8.0.2")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.google.android.material:material:1.5.0")
-
-
 
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -55,7 +60,6 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.annotation)
     implementation(libs.firebase.database)
-//    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
