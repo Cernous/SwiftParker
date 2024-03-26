@@ -3,131 +3,120 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/spots"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swift Park"
+        android:textColor="@color/white"
+        android:id="@+id/actionHome"
+        android:textSize="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/editAddressText"
+        android:layout_width="277dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="@font/dm_sans_medium"
+        android:hint="@string/address"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actionHome" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/spots"
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#a82d65"
+        android:fontFamily="@font/whitneybold"
+        android:text="@string/search"
+        android:textAllCaps="false"
+        app:cornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editAddressText"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="40dp"/>
+
+    <View
+        android:id="@+id/HorizontalHomedivider"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAddressText" />
+
+    <TextView
+        android:id="@+id/greetText"
+        style="@style/header1Text"
+        android:layout_width="364dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/welcome_placeholder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HorizontalHomedivider" />
+
+    <TextView
+        android:id="@+id/subGreetText"
+        style="@style/paragraphText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="8dp"
+        android:text="@string/get_to_a_parking_spot_quickly_and_easily"
+        app:layout_constraintStart_toStartOf="@id/greetText"
+        app:layout_constraintTop_toBottomOf="@+id/greetText" />
+
+    <TextView
+        android:id="@+id/suggestionsText"
+        style="@style/header2Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/suggestions"
+        app:layout_constraintStart_toStartOf="@id/greetText"
+        app:layout_constraintTop_toBottomOf="@+id/subGreetText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:id="@+id/suggestionRecycleView"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/suggestionsText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/demoButton"
+        app:cornerRadius="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="#a82d65"
+        android:fontFamily="@font/whitneybold"
+        android:text="Hardware Demo"
+        android:textAllCaps="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Swift Park"
-            android:textColor="@color/white"
-            android:id="@+id/actionHome"
-            android:textSize="36dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <EditText
-            android:id="@+id/editAddressText"
-            android:layout_width="277dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:fontFamily="@font/dm_sans_medium"
-            android:hint="@string/address"
-            android:inputType="text"
-            android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/actionHome" />
-
-        <Button
-            android:id="@+id/buttonSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#a82d65"
-            android:fontFamily="@font/whitneybold"
-            android:text="@string/search"
-            android:textAllCaps="false"
-            app:cornerRadius="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/editAddressText"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:elevation="40dp"/>
-
-        <View
-            android:id="@+id/HorizontalHomedivider"
-            android:layout_width="300dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editAddressText" />
-
-        <TextView
-            android:id="@+id/greetText"
-            style="@style/header1Text"
-            android:layout_width="364dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/welcome_placeholder"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/HorizontalHomedivider" />
-
-        <TextView
-            android:id="@+id/subGreetText"
-            style="@style/paragraphText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/get_to_a_parking_spot_quickly_and_easily"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/greetText" />
-
-        <TextView
-            android:id="@+id/suggestionsText"
-            style="@style/header2Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/suggestions"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subGreetText" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            android:id="@+id/suggestionRecycleView"
-            android:orientation="horizontal"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/suggestionsText" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/demoButton"
-            app:cornerRadius="50dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="115dp"
-            android:layout_marginBottom="35dp"
-            android:backgroundTint="#a82d65"
-            android:fontFamily="@font/whitneybold"
-            android:text="Hardware Demo"
-            android:textAllCaps="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/suggestionRecycleView"/>
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@id/suggestionRecycleView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
