@@ -14,9 +14,22 @@
 
         <!-- Customize your theme here. -->
 
-        <item name="android:fontFamily">@font/dm_sans_medium</item>
+    </style>
+
+    <style name="paragraphText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/whitneymedium</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16dp</item>
-        <item name="android:background">#eeeeee</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="header1Text"  parent="paragraphText">
+        <item name="android:textSize">32dp</item>
+        <item name="android:fontWeight">250</item>
+    </style>
+
+    <style name="header2Text"  parent="paragraphText">
+        <item name="android:textSize">24dp</item>
+        <item name="android:fontWeight">150</item>
     </style>
 </resources>
