@@ -62,6 +62,8 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         initRecyclerView();
 
+
+
         //Demo Part
         demoButton = view.findViewById(R.id.demoButton);
         demoButton.setOnClickListener(v -> {

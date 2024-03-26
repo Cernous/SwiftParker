@@ -41,6 +41,13 @@ public class spotInfoDialog extends DialogFragment {
         TextView dialogAvailabilities = root.findViewById(R.id.availabilities);
         exitButton = root.findViewById(R.id.cancelexit);
 
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("parking_spot_available");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -32,7 +32,9 @@ public class SpotFragment extends Fragment {
     private FirebaseAuth mAuth;
     List<Spot> spotList;
 
-    public SpotFragment() {}
+    public SpotFragment() {
+        // empty constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
