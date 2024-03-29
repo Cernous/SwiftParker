@@ -36,7 +36,7 @@ public class spotInfoDialog extends DialogFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View root = inflater.inflate(R.layout.spot_info_dialog, container, false);
         TextView dialogName = root.findViewById(R.id.dialog_name);
-        dialogName.setText("Sensor Data");
+        dialogName.setText("Parking Spot Information");
         TextView dialogAddress = root.findViewById(R.id.dialog_address);
         TextView dialogAvailabilities = root.findViewById(R.id.availabilities);
         exitButton = root.findViewById(R.id.cancelexit);
@@ -53,10 +53,10 @@ public class spotInfoDialog extends DialogFragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    dialogAvailabilities.setText("Availabilities: " + snapshot.getValue(Boolean.class).toString());
+                    dialogAvailabilities.setText("Available: " + snapshot.getValue(Boolean.class).toString());
                 }
                 else{
-                    dialogAvailabilities.setText("Availabilities: Could not fetch data!");
+                    dialogAvailabilities.setText("Availability: Could not fetch data!");
                 }
             }
 
