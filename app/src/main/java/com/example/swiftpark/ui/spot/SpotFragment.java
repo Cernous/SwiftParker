@@ -1,6 +1,7 @@
 package com.example.swiftpark.ui.spot;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.swiftpark.R;
+
+import com.example.swiftpark.ui.parkingSpot.ParkingLotActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +53,18 @@ public class SpotFragment extends Fragment {
         String uid = mAuth.getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("spots").child(uid);
 
+        spotAdapter = new SpotAdapter(spotList, new SpotAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Spot spot) {
+                openParkingLotActivity(spot);
 
-            spotAdapter = new SpotAdapter(spotList);
+            }
+        });
+
             spotRecycler.setAdapter(spotAdapter);
             loadRecyclerView();
+
+
 
 
 
@@ -70,6 +83,15 @@ public class SpotFragment extends Fragment {
         super.onResume();
 
         loadRecyclerView();
+    }
+
+
+    private void openParkingLotActivity(Spot spot) {
+        Intent intent = new Intent(getActivity(), ParkingLotActivity.class);
+        intent.putExtra("selectedLot",  spot.getLot());
+
+        startActivity(intent);
+
     }
 
     public void loadRecyclerView () {
@@ -103,7 +125,7 @@ public class SpotFragment extends Fragment {
 
         public void bind(Spot spot) {
             textViewName.setText(spot.getName());
-            textViewAddress.setText(spot.getAddress());
+            textViewAddress.setText(spot.getLot());
         }
     }
 }

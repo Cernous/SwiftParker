@@ -28,14 +28,17 @@ import java.util.List;
 public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.ViewHolder> {
 
     private List<Spot> spotList;
-    private ReadAndWrite readAndWrite;
-    private FirebaseAuth mAuth;
-    private DatabaseReference databaseReference;
+    private OnItemClickListener listener;
 
+    // Interface to handle item clicks
+    public interface OnItemClickListener {
+        void onItemClick(Spot spot);
+    }
 
-    public SpotAdapter(List<Spot> spotList) {
+    // Constructor to initialize the SpotAdapter with spotList and listener
+    public SpotAdapter(List<Spot> spotList, OnItemClickListener listener) {
         this.spotList = spotList;
-
+        this.listener = listener;
     }
 
     @NonNull
@@ -47,15 +50,21 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        mAuth = FirebaseAuth.getInstance();
-        String uid = mAuth.getCurrentUser().getUid();
         Spot spot = spotList.get(position);
         if(spot != null) {
             holder.textViewName.setText(spot.getName());
-            holder.textViewAddress.setText(spot.getAddress());
-        }
+            holder.textViewAddress.setText(spot.getLot());
 
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onItemClick(spot);
+                    }
+                }
+            });
+
+        }
     }
 
     @Override
@@ -66,17 +75,11 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textViewName;
         TextView textViewAddress;
-        Button deleteSpotButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textViewName);
             textViewAddress = itemView.findViewById(R.id.textViewAddress);
-
         }
     }
 }
-
-
-
-

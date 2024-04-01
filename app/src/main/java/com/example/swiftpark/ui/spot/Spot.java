@@ -1,10 +1,9 @@
 package com.example.swiftpark.ui.spot;
 
-public class Spot {
+public class Spot  {
 
     private String name;
-    private String address;
-
+    private String lot;
 
 
     public Spot(){
@@ -12,14 +11,11 @@ public class Spot {
     }
 
 
-
-    public Spot(String name, String address){
+    public Spot(String name, String lot){
 
         this.name = name;
-        this.address = address;
+        this.lot = lot;
     }
-
-
 
     public String getName() {
         return name;
@@ -29,13 +25,11 @@ public class Spot {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getLot() {
+        return lot;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setLot(String lot) {
+        this.lot = lot;
     }
-
-
 }
