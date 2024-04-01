@@ -5,12 +5,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,55 +30,40 @@ public class HomeFragment extends Fragment {
     private static final String TAG = "FragmentHomeBinding";
     private View view;
 
-    //Demo part
-    private Button demoButton;
-
-    //Recycler
     private RecyclerView recyclerView;
     private RecyclerViewAdapter adapter;
     private DatabaseReference databaseReference;
-    private Button openParkingButton;
-
     private FirebaseAuth mAuth;
-
     private ArrayList<Spot> spotList = new ArrayList<>();
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
     private ArrayList<String> mAddresses = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         view = inflater.inflate(R.layout.fragment_home, container, false);
+
+
         mAuth = FirebaseAuth.getInstance();
         String uid = mAuth.getCurrentUser().getUid();
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("spots").child(uid);
         getNameText(uid);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView = view.findViewById(R.id.suggestionRecycleView);
         recyclerView.setLayoutManager(layoutManager);
+
         adapter = new RecyclerViewAdapter(getContext(), mNames, mImageUrls, mAddresses);
         recyclerView.setAdapter(adapter);
         initRecyclerView();
 
-
-
-        //Demo Part
-        demoButton = view.findViewById(R.id.demoButton);
-        demoButton.setOnClickListener(v -> {
-            spotInfoDialog dialog = new spotInfoDialog(this);
-            dialog.show(getParentFragmentManager(), "spotInfoDialog");
-        });
-
         return view;
     }
-
 
     @Override
     public void onResume() {
         super.onResume();
         initRecyclerView();
-
     }
 
     public void getNameText(String uid) {
@@ -94,14 +77,11 @@ public class HomeFragment extends Fragment {
                     greetText.setText("Welcome, " + name);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
-
 
     public void loadSpotsList() {
         mNames.clear();
@@ -124,7 +104,6 @@ public class HomeFragment extends Fragment {
             }
         }
     }
-
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerview" + getActivity());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -139,16 +118,9 @@ public class HomeFragment extends Fragment {
                 loadSpotsList();
                 adapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
-
     }
-
-
-
 }

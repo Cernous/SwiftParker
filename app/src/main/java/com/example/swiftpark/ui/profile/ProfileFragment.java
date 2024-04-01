@@ -31,43 +31,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ProfileFragment extends Fragment {
-    private EditText profileNameEditText, emailEditText;
     private ImageView profilePicture;
     private Button changePasswordButton, logoutButton, editProfileButton, settingsButton;
     private TextView profileNameTextView;
-
-    FirebaseDatabase firebaseDatabase;
-
     private DatabaseReference databaseReference;
     ReadAndWrite readAndWrite;
 
-    Profile profile;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-
+        // Init components
         profileNameTextView = view.findViewById(R.id.profileNameTextView);
-
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         editProfileButton = view.findViewById(R.id.editProfileButton);
         settingsButton = view.findViewById(R.id.settingsButton);
         changePasswordButton = view.findViewById(R.id.changePasswordButton);
-
         logoutButton = view.findViewById(R.id.loginButton);
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-
-        profile = new Profile();
-
+        // Firebase init
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         readAndWrite = new ReadAndWrite(databaseReference);
 
         refreshNameText();
 
-
+        // Button Dialog setups
         settingsButton.setOnClickListener(v -> {
             settings dialog = new settings(this);
             dialog.show(getParentFragmentManager(), "Settings");
@@ -79,6 +68,7 @@ public class ProfileFragment extends Fragment {
             dialog.show(getParentFragmentManager(), "EditProfile");
         });
 
+        // Logs user out of Firebase and returns the user to the Sign in page
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +79,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
+        // Sends the currently logged in user an email to reset their password
         changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,21 +106,13 @@ public class ProfileFragment extends Fragment {
                                 }
                             }
                         }
-
                         @Override
                         public void onCancelled (@NonNull DatabaseError error){
-
-                        }
+                     }
 
                 });
-
-
-
             }
         });
-
-
-
         return view;
     }
 
@@ -146,21 +128,12 @@ public class ProfileFragment extends Fragment {
 
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
     }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

@@ -37,18 +37,21 @@ public class editProfileFragment extends DialogFragment {
 
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         View root = inflater.inflate(R.layout.fragment_edit_profile, container, false);
+
+        // Init components
         saveProfileButton = root.findViewById(R.id.deleteButton);
         cancelButton = root.findViewById(R.id.cancelButton);
         editNameEdit = root.findViewById(R.id.editNameEdit);
         editEmailEdit = root.findViewById(R.id.editEmailEdit);
 
+        // Firebase init
         mDatabase = FirebaseDatabase.getInstance().getReference();
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference usersRef = mDatabase.child("profiles").child(uid);
+
         usersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -64,10 +67,10 @@ public class editProfileFragment extends DialogFragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
+        // Invokes ReadAndWrite class to write new information to the database when the save button is pressed
         saveProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +82,7 @@ public class editProfileFragment extends DialogFragment {
                 fullName = editNameEdit.getText().toString().trim();
                 email = editEmailEdit.getText().toString().trim();
 
-
+                // Error handling when fields are incorrect
                 if (fullName.isEmpty() || email.isEmpty()) {
                     Toast.makeText(getActivity(), "Fields Cannot be Empty", Toast.LENGTH_LONG).show();
                 } else {
@@ -89,11 +92,12 @@ public class editProfileFragment extends DialogFragment {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    // yay !
+                                    // Email is verified
                                 }
                             }
                         });
 
+                        // If the user is valid, will overwrite information in the database
                         String uid = user.getUid();
                         readAndWrite.writeNewProfile(uid, fullName, email);
                         Toast.makeText(getActivity(), "Profile Updated", Toast.LENGTH_LONG).show();
@@ -104,6 +108,7 @@ public class editProfileFragment extends DialogFragment {
             }
         });
 
+        // Closes dialog fragment
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

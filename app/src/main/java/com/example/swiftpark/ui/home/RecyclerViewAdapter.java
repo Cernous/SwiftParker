@@ -67,18 +67,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return mImageUrls.size();
     }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         ImageView image;
         TextView name;
         TextView address;
 
         public ViewHolder(View itemView){
             super(itemView);
-            address=itemView.findViewById(R.id.item_address);
-            image=itemView.findViewById(R.id.item_image);
-            name=itemView.findViewById(R.id.item_name);
+            address = itemView.findViewById(R.id.item_address);
+            image = itemView.findViewById(R.id.item_image);
+            name = itemView.findViewById(R.id.item_name);
         }
     }
 }

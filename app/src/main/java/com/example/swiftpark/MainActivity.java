@@ -59,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
                     parkingLotsRef.child("Demo").child("spot_2").child("status").setValue("available");
                     parkingLotsRef.child("Demo").child("spot_3").child("status").setValue("available");
 
-                    String[] lotNames = {"Lot A","Lot B", "Lot C"};
+                    String[] lotNames = {"Lot_A","Lot_B", "Lot_C"};
 
                     for (String lotName : lotNames){
                         DatabaseReference lotRef = parkingLotsRef.child(lotName);
 
                         for(int i = 1; i <= 30; i++){
                             String spotNumber = String.format("%02d", i);
-                            String spotName =  "spot_" + spotNumber;
+                            String spotName =  "Spot " + spotNumber;
 
                             lotRef.child(spotName).child("status").setValue("available");
                         }

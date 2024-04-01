@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.swiftpark.R;
-import com.example.swiftpark.ui.home.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

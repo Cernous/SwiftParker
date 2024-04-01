@@ -31,29 +31,22 @@ public class ParkingLotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_parking_lot);
 
-        String selectedLot = getIntent().getStringExtra("selectedLot");
-
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("parking_lots").child(selectedLot);
-
+        // Init components
         returnButton = findViewById(R.id.returnButton);
         lotTextView = findViewById((R.id.lotTextView));
+        parkingSpotRecycler = findViewById(R.id.parkingSpotRecycler);
 
+        // Fetch Parking Lot
+        String selectedLot = getIntent().getStringExtra("selectedLot");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("parking_lots").child(selectedLot);
         updateName();
 
-
-        parkingSpotRecycler = findViewById(R.id.parkingSpotRecycler);
+        // Set Recycler View
         parkingSpotRecycler.setLayoutManager(new LinearLayoutManager(this));
         spotAdapter = new ParkingSpotAdapter();
         parkingSpotRecycler.setAdapter(spotAdapter);
 
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
+        // Update the recycler view when there is an update to the database
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -72,9 +65,16 @@ public class ParkingLotActivity extends AppCompatActivity {
             }
         });
 
-
-
+        // Returns to Spot fragment
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
+
+    // Handles title text view
     public void updateName() {
         String selectedLot = getIntent().getStringExtra("selectedLot");
 
@@ -87,6 +87,5 @@ public class ParkingLotActivity extends AppCompatActivity {
         if(selectedLot.equals("Lot_C")){
             lotTextView.setText("Parking Lot C");
         }
-
     }
 }

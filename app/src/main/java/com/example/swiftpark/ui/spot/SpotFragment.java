@@ -1,6 +1,5 @@
 package com.example.swiftpark.ui.spot;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.swiftpark.R;
@@ -24,12 +22,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SpotFragment extends Fragment {
-
     private RecyclerView spotRecycler;
     private SpotAdapter spotAdapter;
     private DatabaseReference databaseReference;
@@ -45,10 +41,12 @@ public class SpotFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_spot, container, false);
 
+        // Recycler setup
         spotRecycler = view.findViewById(R.id.spotRecycler);
         spotRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         spotList = new ArrayList<>();
 
+        // Firebase init
         mAuth = FirebaseAuth.getInstance();
         String uid = mAuth.getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("spots").child(uid);
@@ -60,20 +58,15 @@ public class SpotFragment extends Fragment {
 
             }
         });
-
             spotRecycler.setAdapter(spotAdapter);
             loadRecyclerView();
 
-
-
-
-
+        // Opens dialog
         Button button = view.findViewById(R.id.addSpotButton);
         button.setOnClickListener(v -> {
             insertSpotDialog dialog = new insertSpotDialog(this);
             dialog.show(getParentFragmentManager(), "InsertSpot");
         });
-
 
         return view;
     }
@@ -85,17 +78,15 @@ public class SpotFragment extends Fragment {
         loadRecyclerView();
     }
 
-
+    // Function that handles navigation when a favorite spot is selected
     private void openParkingLotActivity(Spot spot) {
         Intent intent = new Intent(getActivity(), ParkingLotActivity.class);
         intent.putExtra("selectedLot",  spot.getLot());
-
         startActivity(intent);
-
     }
 
+    // Function that will fetch all of the favorite spots and display them in a recycler view
     public void loadRecyclerView () {
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 spotList.clear();
@@ -105,28 +96,10 @@ public class SpotFragment extends Fragment {
                 }
                 spotAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-    }
-
-    public static class SpotViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textViewName;
-        private final TextView textViewAddress;
-
-        public SpotViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textViewName = itemView.findViewById(R.id.textViewName);
-            textViewAddress = itemView.findViewById(R.id.textViewAddress);
-        }
-
-        public void bind(Spot spot) {
-            textViewName.setText(spot.getName());
-            textViewAddress.setText(spot.getLot());
-        }
     }
 }
 
