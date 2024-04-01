@@ -5,7 +5,7 @@ public class Profile {
     public String email;
 
     public Profile() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+        // Default constructor required
     }
 
     public Profile(String fullName, String email) {

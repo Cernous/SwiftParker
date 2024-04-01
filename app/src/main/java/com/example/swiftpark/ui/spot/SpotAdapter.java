@@ -1,41 +1,25 @@
 package com.example.swiftpark.ui.spot;
 
-
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.swiftpark.Database.ReadAndWrite;
 import com.example.swiftpark.R;
-import com.example.swiftpark.ui.spot.Spot;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import java.util.ArrayList;
 import java.util.List;
-
 public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.ViewHolder> {
 
     private List<Spot> spotList;
     private OnItemClickListener listener;
 
-    // Interface to handle item clicks
+    // Interface that handles clicks
     public interface OnItemClickListener {
         void onItemClick(Spot spot);
     }
 
-    // Constructor to initialize the SpotAdapter with spotList and listener
     public SpotAdapter(List<Spot> spotList, OnItemClickListener listener) {
         this.spotList = spotList;
         this.listener = listener;

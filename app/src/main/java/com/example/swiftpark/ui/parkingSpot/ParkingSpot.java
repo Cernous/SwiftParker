@@ -5,7 +5,7 @@ public class ParkingSpot {
     private String status;
 
     public ParkingSpot(){
-
+        // Empty constructor
     }
 
     public ParkingSpot(String spotName, String status){
