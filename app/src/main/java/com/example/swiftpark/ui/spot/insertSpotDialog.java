@@ -10,8 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.swiftpark.Database.ReadAndWrite;
@@ -26,7 +30,10 @@ import com.google.firebase.database.FirebaseDatabase;
 public class insertSpotDialog extends DialogFragment {
     private ReadAndWrite readAndWrite;
     private SpotFragment spotFragment;
-    private Button selectButton;
+
+    private Spinner lotSpinner;
+    private TextView spinnerTextView;
+
 
     public insertSpotDialog(SpotFragment spotFragment) {
         this.spotFragment = spotFragment;
@@ -38,39 +45,34 @@ public class insertSpotDialog extends DialogFragment {
             View root = inflater.inflate(R.layout.fragment_insert_spot_dialog, container, false);
 
             EditText nameEditText = root.findViewById(R.id.nameEditText);
-            EditText addressEditText = root.findViewById(R.id.addressEditText);
             Button saveButton = root.findViewById(R.id.saveButton);
             Button cancelButton = root.findViewById(R.id.cancelButton);
-            selectButton = root.findViewById(R.id.selectButton);
+            lotSpinner = root.findViewById(R.id.lotDropdown);
 
-            selectButton.setVisibility(getView().GONE);
+        String[] lotNames = {"Lot_A", "Lot_B", "Lot_C"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),  R.layout.spinner_item_custom, lotNames);
+
+        lotSpinner.setAdapter(adapter);
+
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         readAndWrite = new ReadAndWrite(databaseReference);
 
-        selectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSecondDialog();
-
-            }
-        });
 
             saveButton.setOnClickListener(new View.OnClickListener() {
-
                 @Override
                 public void onClick(View v) {
                     String name = nameEditText.getText().toString();
-                    String address = addressEditText.getText().toString();
+                    String lotSelected = lotSpinner.getSelectedItem().toString();
 
-                    if (name.isEmpty() || address.isEmpty()) {
+                    if (name.isEmpty() || lotSelected.isEmpty()) {
                         Toast.makeText(getActivity(), "Fields Cannot be Empty", Toast.LENGTH_LONG).show();
                     } else {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         if (user != null) {
                             String uid = user.getUid();
 
-                            readAndWrite.writeNewSpot(uid, name, address);
+                            readAndWrite.writeNewSpot(uid, name, lotSelected);
                             Toast.makeText(getActivity(), "Spot Saved !", Toast.LENGTH_LONG).show();
                             if (spotFragment != null) {
                                 spotFragment.loadRecyclerView();
@@ -90,22 +92,10 @@ public class insertSpotDialog extends DialogFragment {
         return root;
 
     }
-    private void openSecondDialog() {
-        SecondDialogFragment secondDialogFragment = new SecondDialogFragment();
-        secondDialogFragment.show(getChildFragmentManager(), "SecondDialogFragment");
-    }
-
-
-
-
-
-
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-
-
     }
 
 }

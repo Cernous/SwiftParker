@@ -26,25 +26,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spotTitleTextView" />
 
-        <EditText
-            android:id="@+id/addressEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="100dp"
-            android:ems="10"
-            android:hint="Address"
-            android:inputType="text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
-
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:background="@android:color/transparent"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
             android:elevation="0dp"
             android:text="X"
             android:textSize="20sp"
@@ -70,23 +59,35 @@
             android:id="@+id/spotTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="Add a Spot"
             android:background="@color/white"
-            android:textSize="35sp"
+            android:textSize="36sp"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/selectButton"
-            android:layout_width="wrap_content"
+
+        <Spinner
+            android:id="@+id/lotDropdown"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="100dp"
-            android:text="Select a Parking Lot"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/spinner_item_background"
+            android:spinnerMode="dropdown"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addressEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/nameEditText"
+            android:dropDownWidth="match_parent"
+            android:dropDownVerticalOffset="40dp"
+            />
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

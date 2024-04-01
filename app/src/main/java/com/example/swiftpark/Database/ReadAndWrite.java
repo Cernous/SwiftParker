@@ -30,8 +30,8 @@ public class ReadAndWrite {
     }
 
 
-    public void writeNewSpot(String userId, String name, String address) {
-        Spot spot = new Spot(name,address);
+    public void writeNewSpot(String userId, String name, String lot) {
+        Spot spot = new Spot(name,lot);
         mDatabase.child("spots").child(userId).push().setValue(spot);
     }
 
