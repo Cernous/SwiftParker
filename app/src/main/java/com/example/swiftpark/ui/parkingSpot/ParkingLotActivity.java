@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.swiftpark.R;
@@ -23,7 +24,9 @@ public class ParkingLotActivity extends AppCompatActivity {
     private RecyclerView parkingSpotRecycler;
     private ParkingSpotAdapter spotAdapter;
     private Button returnButton;
-    private TextView lotTextView;
+    private TextView lotTextView, spotsFilledText;
+    private ProgressBar progressBar;
+
 
 
     @Override
@@ -34,7 +37,9 @@ public class ParkingLotActivity extends AppCompatActivity {
         // Init components
         returnButton = findViewById(R.id.returnButton);
         lotTextView = findViewById((R.id.lotTextView));
+        spotsFilledText = findViewById(R.id.spotsFilledText);
         parkingSpotRecycler = findViewById(R.id.parkingSpotRecycler);
+        progressBar = findViewById(R.id.progressBar);
 
         // Fetch Parking Lot
         String selectedLot = getIntent().getStringExtra("selectedLot");
@@ -51,11 +56,27 @@ public class ParkingLotActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<ParkingSpot> spots = new ArrayList<>();
+                int totalSpots = 30;
+                int availableSpots = 0;
+                int spotsFilled = 0;
                 for(DataSnapshot spotSnapshot : snapshot.getChildren()) {
                     String spotName = spotSnapshot.getKey();
                     String status = spotSnapshot.child("status").getValue(String.class);
-                    spots.add(new ParkingSpot(spotName, status));
+
+
+
+                    if(status != null & status.equals("available")){
+                        availableSpots++;
+                        spotsFilled = 30 - availableSpots;
+                        spotsFilledText.setText("Spots Filled: " + spotsFilled + "/30");
+                        spots.add(new ParkingSpot(spotName, status));
+                    }
                 }
+
+                int availablePercentage = (int) ((float) spotsFilled / totalSpots * 100);
+
+                progressBar.setProgress(availablePercentage);
+
                 spotAdapter.setParkingSpots(spots);
                 spotAdapter.notifyDataSetChanged();
             }
