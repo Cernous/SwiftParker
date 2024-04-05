@@ -53,12 +53,12 @@ public class ParkingSpotAdapter extends RecyclerView.Adapter<ParkingSpotAdapter.
         public ParkingSpotViewHolder(@NonNull View itemView) {
             super(itemView);
             spotNameTextView = itemView.findViewById(R.id.spotNameTextView);
-            statusTextView = itemView.findViewById(R.id.statusTextView);
+//            statusTextView = itemView.findViewById(R.id.statusTextView);
         }
 
         public void bind(ParkingSpot parkingSpot) {
             spotNameTextView.setText(parkingSpot.getSpotName());
-            statusTextView.setText(parkingSpot.getStatus());
+//            statusTextView.setText(parkingSpot.getStatus());
         }
     }
 
