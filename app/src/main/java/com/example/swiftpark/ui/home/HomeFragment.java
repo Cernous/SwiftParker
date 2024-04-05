@@ -29,7 +29,6 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG = "FragmentHomeBinding";
     private View view;
-
     private RecyclerView recyclerView;
     private RecyclerViewAdapter adapter;
     private DatabaseReference databaseReference;
@@ -53,7 +52,7 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.suggestionRecycleView);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new RecyclerViewAdapter(getContext(), mNames, mImageUrls, mAddresses);
+        adapter = new RecyclerViewAdapter(this, mNames, mImageUrls, mAddresses);
         recyclerView.setAdapter(adapter);
         initRecyclerView();
 

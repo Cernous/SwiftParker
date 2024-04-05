@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/spots">
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="@string/address"
+        android:layout_marginTop="25dp"
+        android:textAlignment="center"
+        android:iconifiedByDefault="false"
+        android:id="@+id/search"
+        android:background="#000000DD"
+        android:fontFamily="@font/whitneymedium"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search"
+        android:id="@+id/listview"
+        android:fontFamily="@font/whitneymedium"
+        />
+
+
+</RelativeLayout>

@@ -24,34 +24,18 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <EditText
+    <SearchView
         android:id="@+id/editAddressText"
-        android:layout_width="277dp"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:fontFamily="@font/dm_sans_medium"
-        android:hint="@string/address"
-        android:inputType="text"
+        android:fontFamily="@font/whitneymedium"
+        android:queryHint="@string/address"
         android:textAlignment="center"
+        android:iconifiedByDefault="false"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/actionHome" />
-
-        <Button
-            android:id="@+id/buttonSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#a82d65"
-            android:fontFamily="@font/whitneybold"
-            android:text="@string/search"
-            android:textAllCaps="false"
-            app:cornerRadius="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/editAddressText"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:elevation="40dp"/>
 
     <View
         android:id="@+id/HorizontalHomedivider"

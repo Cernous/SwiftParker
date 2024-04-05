@@ -8,6 +8,7 @@
         app:cardCornerRadius="35dp"
         app:cardElevation="1dp"
         app:cardMaxElevation="2dp"
+        android:id="@+id/card"
         android:layout_margin="20dp"
         android:layout_width="350dp"
         android:layout_height="375dp"
