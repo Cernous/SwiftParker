@@ -47,7 +47,7 @@ public class insertSpotDialog extends DialogFragment {
             lotSpinner = root.findViewById(R.id.lotDropdown);
 
         // Dropdown menu set up
-        String[] lotNames = {"Lot_A", "Lot_B", "Lot_C"};
+        String[] lotNames = {"Lot A", "Lot B", "Lot C"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),  R.layout.spinner_item_custom, lotNames);
         lotSpinner.setAdapter(adapter);
 

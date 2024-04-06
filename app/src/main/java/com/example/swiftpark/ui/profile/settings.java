@@ -1,11 +1,13 @@
 package com.example.swiftpark.ui.profile;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import android.view.LayoutInflater;
@@ -53,19 +55,39 @@ public class settings extends DialogFragment {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.custom_alert, null);
 
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+                builder.setView(dialogView);
+                builder.setTitle("Delete Profile")
+                        .setMessage("Are you sure you want to delete your profile? This action cannot be undone");
+                builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
+                                    String uid = user.getUid();
+                                    FirebaseDatabase.getInstance().getReference("profiles").child(uid).removeValue();
+                                    FirebaseDatabase.getInstance().getReference("spots").child(uid).removeValue();
                                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                                     startActivity(intent);
                                 }
                             }
                         });
+                    }
+                });
+
+                builder.setNegativeButton(android.R.string.no, null);
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
+
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
