@@ -73,7 +73,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Log.d(TAG, "onClick: clicked on an image: " + mNames.get(position));
                 Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
                 if(mImageUrls.get(position).contentEquals("https://www.clipartbest.com/cliparts/dT8/XEd/dT8XEdj6c.png")) return;
-                parkingInfoDialog dialog = new parkingInfoDialog(mFragment, mAddresses.get(position));
+                parkingInfoDialog dialog = new parkingInfoDialog(mFragment, mAddresses.get(position).replace(" ", "_"));
                 dialog.show(mFragment.getParentFragmentManager(), "parkingLotDialog");
             }
         });
