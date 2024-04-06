@@ -3,6 +3,7 @@ package com.example.swiftpark.ui.parkingSpot;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
@@ -43,13 +44,17 @@ public class ParkingLotActivity extends AppCompatActivity {
 
         // Fetch Parking Lot
         String selectedLot = getIntent().getStringExtra("selectedLot");
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("parking_lots").child(selectedLot);
+        String updatedLot = selectedLot.replace(" ", "_");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("parking_lots").child(updatedLot);
         updateName();
 
-        // Set Recycler View
-        parkingSpotRecycler.setLayoutManager(new LinearLayoutManager(this));
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
+
+        parkingSpotRecycler.setLayoutManager(layoutManager);
         spotAdapter = new ParkingSpotAdapter();
         parkingSpotRecycler.setAdapter(spotAdapter);
+
+
 
         // Update the recycler view when there is an update to the database
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -70,6 +75,7 @@ public class ParkingLotActivity extends AppCompatActivity {
                         spotsFilled = 30 - availableSpots;
                         spotsFilledText.setText("Spots Filled: " + spotsFilled + "/30");
                         spots.add(new ParkingSpot(spotName, status));
+
                     }
                 }
 

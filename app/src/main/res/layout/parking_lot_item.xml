@@ -12,16 +12,8 @@
         android:text="Spot Name"
         android:textColor="@color/black"
         android:fontFamily="@font/whitney"
-        android:textSize="18sp"
+        android:textSize="26sp"
         android:textStyle="bold" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/statusTextView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:fontFamily="@font/whitney"-->
-<!--        android:text="Status"-->
-<!--        android:textSize="16sp" />-->
 
 </LinearLayout>

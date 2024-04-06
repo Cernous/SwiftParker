@@ -20,7 +20,7 @@
         android:layout_marginTop="40dp"
         android:scaleType="centerCrop"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/sheep"
+        app:srcCompat="@drawable/default_pfp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

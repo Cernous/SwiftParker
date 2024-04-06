@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.swiftpark.R;
 
 import com.example.swiftpark.ui.parkingSpot.ParkingLotActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,8 +60,8 @@ public class SpotFragment extends Fragment {
 
             }
         });
-            spotRecycler.setAdapter(spotAdapter);
-            loadRecyclerView();
+        spotRecycler.setAdapter(spotAdapter);
+        loadRecyclerView();
 
         // Opens dialog
         Button button = view.findViewById(R.id.addSpotButton);
@@ -81,12 +83,12 @@ public class SpotFragment extends Fragment {
     // Function that handles navigation when a favorite spot is selected
     private void openParkingLotActivity(Spot spot) {
         Intent intent = new Intent(getActivity(), ParkingLotActivity.class);
-        intent.putExtra("selectedLot",  spot.getLot());
+        intent.putExtra("selectedLot", spot.getLot());
         startActivity(intent);
     }
 
     // Function that will fetch all of the favorite spots and display them in a recycler view
-    public void loadRecyclerView () {
+    public void loadRecyclerView() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 spotList.clear();
@@ -96,10 +98,30 @@ public class SpotFragment extends Fragment {
                 }
                 spotAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
+
+    }
+
+    public void onDeleteClick(String spotKey) {
+        databaseReference.child(spotKey).removeValue()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Spot deleted successfully
+                        // You may want to notify user or refresh UI
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    }
+                });
+
     }
 }
 

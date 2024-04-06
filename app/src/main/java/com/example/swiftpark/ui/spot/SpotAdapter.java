@@ -35,9 +35,11 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Spot spot = spotList.get(position);
+
         if(spot != null) {
             holder.textViewName.setText(spot.getName());
-            holder.textViewAddress.setText(spot.getLot());
+            String updatedLot = spot.getLot().replace("_", " ");
+            holder.textViewAddress.setText(updatedLot);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
