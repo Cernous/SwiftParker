@@ -1,5 +1,6 @@
 package com.example.swiftpark.ui.home;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ import java.util.Objects;
 public class parkingInfoDialog extends DialogFragment {
     private ReadAndWrite readAndWrite;
     private Fragment homeFragment;
-
+    private Activity parent;
     private String lotName;
     private Button exitButton;
 
@@ -41,9 +42,9 @@ public class parkingInfoDialog extends DialogFragment {
             int available_Spots = 0;
             for (DataSnapshot spotS : snapshot.getChildren()) {
                 try {
-                    if (spotS.getKey().contains("Spot")) {
+                    if (spotS.getKey().toLowerCase().contains("spot")) {
                         total_Spots += 1;
-                        if (Objects.equals(spotS.child("status").getValue(String.class), "available")) {
+                        if (Objects.equals(spotS.child("status").getValue(String.class).toLowerCase(), "available")) {
                             available_Spots += 1;
                         }
                     }
@@ -64,6 +65,11 @@ public class parkingInfoDialog extends DialogFragment {
 
     public parkingInfoDialog(Fragment parent, String lot) {
         this.homeFragment = parent;
+        this.lotName = lot;
+    }
+
+    public parkingInfoDialog(Activity parent, String lot) {
+        this.parent = parent;
         this.lotName = lot;
     }
     @Nullable
