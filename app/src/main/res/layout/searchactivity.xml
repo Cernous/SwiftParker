@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/spots">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:fontFamily="@font/whitneymedium"
+        android:text="Back to Home"
+        android:textAllCaps="false"
+        app:cornerRadius="50dp"
+        android:backgroundTint="@color/black"
+        android:elevation="20dp"
+        android:id="@+id/returnButton2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="@string/address"
+        android:textAlignment="center"
+        android:iconifiedByDefault="false"
+        android:id="@+id/search"
+        android:background="#000000DD"
+        android:fontFamily="@font/whitneymedium"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/returnButton2"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search"
+        android:id="@+id/listview"
+        android:fontFamily="@font/whitneymedium"
+        />
+
+
+</RelativeLayout>

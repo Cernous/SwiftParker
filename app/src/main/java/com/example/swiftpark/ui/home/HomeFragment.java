@@ -1,10 +1,12 @@
 package com.example.swiftpark.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.swiftpark.Database.ReadAndWrite;
 import com.example.swiftpark.R;
-
+import com.example.swiftpark.ui.search.SearchActivity;
 import com.example.swiftpark.ui.spot.Spot;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +31,6 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG = "FragmentHomeBinding";
     private View view;
-
     private RecyclerView recyclerView;
     private RecyclerViewAdapter adapter;
     private DatabaseReference databaseReference;
@@ -39,9 +40,10 @@ public class HomeFragment extends Fragment {
     private ArrayList<String> mImageUrls = new ArrayList<>();
     private ArrayList<String> mAddresses = new ArrayList<>();
 
+    private EditText editAddressText;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
-
 
         mAuth = FirebaseAuth.getInstance();
         String uid = mAuth.getCurrentUser().getUid();
@@ -53,9 +55,26 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.suggestionRecycleView);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new RecyclerViewAdapter(getContext(), mNames, mImageUrls, mAddresses);
+        adapter = new RecyclerViewAdapter(this, mNames, mImageUrls, mAddresses);
         recyclerView.setAdapter(adapter);
         initRecyclerView();
+
+        editAddressText = view.findViewById(R.id.editAddressText);
+        editAddressText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        editAddressText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Intent intent = new Intent(view.getContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

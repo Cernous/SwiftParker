@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -28,10 +30,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mAddresses = new ArrayList<>();
     private Context mContext;
 
+    private Fragment mFragment;
+
     public RecyclerViewAdapter(Context context, ArrayList<String> names, ArrayList<String> imageUrls, ArrayList<String> addresses) {
         mNames = names;
         mImageUrls = imageUrls;
         mContext = context;
+        mAddresses = addresses;
+    }
+
+    public RecyclerViewAdapter(Fragment fragment, ArrayList<String> names, ArrayList<String> imageUrls, ArrayList<String> addresses) {
+        mNames = names;
+        mImageUrls = imageUrls;
+        mFragment = fragment;
+        mContext = mFragment.getContext();
         mAddresses = addresses;
     }
 
@@ -54,11 +66,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.name.setText(mNames.get(position));
         holder.address.setText(mAddresses.get(position));
 
-        holder.image.setOnClickListener(new View.OnClickListener() {
+        holder.listView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.d(TAG, "onClick: clicked on an image: " + mNames.get(position));
                 Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
+                if(mImageUrls.get(position).contentEquals("https://www.clipartbest.com/cliparts/dT8/XEd/dT8XEdj6c.png")) return;
+                parkingInfoDialog dialog = new parkingInfoDialog(mFragment, mAddresses.get(position));
+                dialog.show(mFragment.getParentFragmentManager(), "parkingLotDialog");
             }
         });
     }
@@ -72,8 +88,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView name;
         TextView address;
 
+        CardView listView;
+
         public ViewHolder(View itemView){
             super(itemView);
+            listView = itemView.findViewById(R.id.card);
             address = itemView.findViewById(R.id.item_address);
             image = itemView.findViewById(R.id.item_image);
             name = itemView.findViewById(R.id.item_name);

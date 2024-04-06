@@ -54,6 +54,10 @@
             android:name=".ui.parkingSpot.ParkingLotActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
