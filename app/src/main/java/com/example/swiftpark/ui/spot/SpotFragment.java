@@ -81,7 +81,7 @@ public class SpotFragment extends Fragment {
     }
 
     // Function that handles navigation when a favorite spot is selected
-    private void openParkingLotActivity(Spot spot) {
+    public void openParkingLotActivity(Spot spot) {
         Intent intent = new Intent(getActivity(), ParkingLotActivity.class);
         intent.putExtra("selectedLot", spot.getLot());
         startActivity(intent);

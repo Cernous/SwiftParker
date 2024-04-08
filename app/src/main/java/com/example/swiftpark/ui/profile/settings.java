@@ -18,6 +18,8 @@ import android.widget.Button;
 import com.example.swiftpark.LoginSignUpActivity.LoginActivity;
 import com.example.swiftpark.R;
 import com.example.swiftpark.ui.home.spotInfoDialog;
+import com.example.swiftpark.ui.parkingSpot.ParkingLotActivity;
+import com.example.swiftpark.ui.spot.SpotFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class settings extends DialogFragment {
     private ProfileFragment profileFragment;
+    private SpotFragment spotFragment;
     private Button cancelButton, deleteButton, demoButton;
     private DatabaseReference mDatabase;
 
@@ -47,10 +50,20 @@ public class settings extends DialogFragment {
 
         //Opens Demo Dialog
         demoButton = root.findViewById(R.id.demoButton);
-        demoButton.setOnClickListener(v -> {
-            spotInfoDialog dialog = new spotInfoDialog(this);
-            dialog.show(getParentFragmentManager(), "spotInfoDialog");
+        demoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ParkingLotActivity.class);
+                intent.putExtra("selectedLot", "Demo");
+                startActivity(intent);
+            }
         });
+
+
+//        demoButton.setOnClickListener(v -> {
+//            spotInfoDialog dialog = new spotInfoDialog(this);
+//            dialog.show(getParentFragmentManager(), "spotInfoDialog");
+//        });
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

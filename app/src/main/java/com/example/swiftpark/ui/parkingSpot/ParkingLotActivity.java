@@ -63,9 +63,19 @@ public class ParkingLotActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<ParkingSpot> spots = new ArrayList<>();
-                int totalSpots = 30;
+                int totalSpots = 0;
                 int availableSpots = 0;
                 int spotsFilled = 0;
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("parking_lots").child(updatedLot);
+                if (updatedLot.equals("Demo")) {
+                    availableSpots = 0;
+                    totalSpots = 3;
+
+                } else {
+                    availableSpots = 0;
+                    totalSpots = 30;
+                }
+
                 for(DataSnapshot spotSnapshot : snapshot.getChildren()) {
                     String spotName = spotSnapshot.getKey();
                     String status = spotSnapshot.child("status").getValue(String.class);
@@ -74,8 +84,13 @@ public class ParkingLotActivity extends AppCompatActivity {
 
                     if(status != null & status.equals("available")){
                         availableSpots++;
-                        spotsFilled = 30 - availableSpots;
-                        spotsFilledText.setText("Spots Filled: " + spotsFilled + "/30");
+                        if (updatedLot.equals("Demo")) {
+                            spotsFilled = 3 - availableSpots;
+                        } else {
+                            spotsFilled = 30 - availableSpots;
+                        }
+
+                        spotsFilledText.setText("Spots Filled: " + spotsFilled + "/" + totalSpots);
                         spots.add(new ParkingSpot(spotName, status));
 
                     }
