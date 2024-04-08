@@ -1,15 +1,16 @@
 package com.example.swiftpark.ui.parkingSpot;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.swiftpark.R;
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,14 +107,16 @@ public class ParkingLotActivity extends AppCompatActivity {
     public void updateName() {
         String selectedLot = getIntent().getStringExtra("selectedLot");
 
-        if(selectedLot.equals("Lot_A")){
-            lotTextView.setText("Parking Lot A");
-        }
-        if(selectedLot.equals("Lot_B")){
-            lotTextView.setText("Parking Lot B");
-        }
-        if(selectedLot.equals("Lot_C")){
-            lotTextView.setText("Parking Lot C");
-        }
+//        if(selectedLot.equals("Lot_A")){
+//            lotTextView.setText("Parking Lot A");
+//        }
+//        if(selectedLot.equals("Lot_B")){
+//            lotTextView.setText("Parking Lot B");
+//        }
+//        if(selectedLot.equals("Lot_C")){
+//            lotTextView.setText("Parking Lot C");
+//        }
+
+        lotTextView.setText("Parking " + selectedLot.replace("_", " "));
     }
 }

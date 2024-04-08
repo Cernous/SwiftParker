@@ -48,15 +48,15 @@ public class spotInfoDialog extends DialogFragment {
             }
         });
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("parking_spot_available");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("angle");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    dialogAvailabilities.setText("Available: " + snapshot.getValue(Boolean.class).toString());
+                    dialogAvailabilities.setText("Servo Angle: " + snapshot.getValue());
                 }
                 else{
-                    dialogAvailabilities.setText("Availability: Could not fetch data!");
+                    dialogAvailabilities.setText("Servo Angle: Could not fetch data!");
                 }
             }
 
