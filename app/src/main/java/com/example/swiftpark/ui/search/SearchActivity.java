@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.swiftpark.MainActivity;
 import com.example.swiftpark.R;
 import com.example.swiftpark.ui.home.parkingInfoDialog;
+import com.example.swiftpark.ui.parkingSpot.ParkingLotActivity;
+import com.example.swiftpark.ui.spot.SpotFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +35,7 @@ public class SearchActivity extends AppCompatActivity {
     private ListView listview;
     private Button returnButton2;
     private SearchView search;
+    private SpotFragment spotFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,9 +87,11 @@ public class SearchActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(SearchActivity.this, adapter.getItem(position), Toast.LENGTH_SHORT).show();
-                parkingInfoDialog dialog = new parkingInfoDialog(SearchActivity.this, adapter.getItem(position).replace(" ", "_"));
-                dialog.show(SearchActivity.this.getSupportFragmentManager(), "Parking Info Dialog");
+
+
+                Intent intent = new Intent(getApplicationContext(), ParkingLotActivity.class);
+                intent.putExtra("selectedLot", adapter.getItem(position).replace(" ", "_"));
+                startActivity(intent);
             }
         });
 

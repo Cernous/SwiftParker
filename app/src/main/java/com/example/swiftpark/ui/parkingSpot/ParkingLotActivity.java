@@ -27,7 +27,7 @@ public class ParkingLotActivity extends AppCompatActivity {
     private RecyclerView parkingSpotRecycler;
     private ParkingSpotAdapter spotAdapter;
     private Button returnButton;
-    private TextView lotTextView, spotsFilledText;
+    private TextView lotTextView, spotsFilledText, noSpotsText;
     private ProgressBar progressBar;
 
 
@@ -41,6 +41,7 @@ public class ParkingLotActivity extends AppCompatActivity {
         returnButton = findViewById(R.id.returnButton);
         lotTextView = findViewById((R.id.lotTextView));
         spotsFilledText = findViewById(R.id.spotsFilledText);
+        noSpotsText = findViewById(R.id.noSpotsText);
         parkingSpotRecycler = findViewById(R.id.parkingSpotRecycler);
         progressBar = findViewById(R.id.progressBar);
 
@@ -63,9 +64,19 @@ public class ParkingLotActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<ParkingSpot> spots = new ArrayList<>();
-                int totalSpots = 30;
-                int availableSpots = 0;
+                int totalSpots;
+                int availableSpots;
                 int spotsFilled = 0;
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("parking_lots").child(updatedLot);
+                if (updatedLot.equals("Demo")) {
+                    availableSpots = 0;
+                    totalSpots = 3;
+
+                } else {
+                    availableSpots = 0;
+                    totalSpots = 30;
+                }
+
                 for(DataSnapshot spotSnapshot : snapshot.getChildren()) {
                     String spotName = spotSnapshot.getKey();
                     String status = spotSnapshot.child("status").getValue(String.class);
@@ -74,8 +85,13 @@ public class ParkingLotActivity extends AppCompatActivity {
 
                     if(status != null & status.equals("available")){
                         availableSpots++;
-                        spotsFilled = 30 - availableSpots;
-                        spotsFilledText.setText("Spots Filled: " + spotsFilled + "/30");
+                        if (updatedLot.equals("Demo")) {
+                            spotsFilled = 3 - availableSpots;
+                        } else {
+                            spotsFilled = 30 - availableSpots;
+                        }
+
+                        spotsFilledText.setText("Spots Filled: " + spotsFilled + "/" + totalSpots);
                         spots.add(new ParkingSpot(spotName, status));
 
                     }
@@ -83,7 +99,16 @@ public class ParkingLotActivity extends AppCompatActivity {
 
                 int availablePercentage = (int) ((float) spotsFilled / totalSpots * 100);
 
-                progressBar.setProgress(availablePercentage);
+                if (availablePercentage == 0){
+                    progressBar.setVisibility(View.GONE);
+                    spotsFilledText.setVisibility(View.GONE);
+
+
+                }
+                else {
+                    progressBar.setProgress(availablePercentage);
+                    noSpotsText.setVisibility(View.GONE);
+                }
 
                 spotAdapter.setParkingSpots(spots);
                 spotAdapter.notifyDataSetChanged();
