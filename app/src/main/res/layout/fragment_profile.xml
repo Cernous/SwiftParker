@@ -17,15 +17,15 @@
         android:id="@+id/profileImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="40dp"
-        android:scaleType="centerCrop"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/default_pfp"
+        android:layout_marginTop="4dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:shapeAppearanceOverlay="@style/ImageViewShape" />
+        app:shapeAppearanceOverlay="@style/ImageViewShape"
+        app:srcCompat="@drawable/default_pfp" />
 
     <TextView
         android:id="@+id/textView"
@@ -118,7 +118,7 @@
         android:id="@+id/profileNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/whitney"
         android:textColor="@color/black"
         android:textSize="36sp"

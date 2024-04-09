@@ -76,8 +76,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         String fullName, email, password;
         fullName = fullnameEditText.getText().toString();
-        email = register_email.getText().toString();
-        password = register_password.getText().toString();
+        email = register_email.getText().toString().trim();
+        password = register_password.getText().toString().trim();
 
         if (TextUtils.isEmpty(fullName)) {
             Toast.makeText(getApplicationContext(), "Please enter a valid name", Toast.LENGTH_LONG).show();
@@ -89,6 +89,11 @@ public class RegisterActivity extends AppCompatActivity {
         }
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(getApplicationContext(), "Please enter a valid password", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (password.length() < 8) {
+            Toast.makeText(getApplicationContext(), "Password must be at least 8 characters long", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -114,8 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
                         else {
                             Toast.makeText(
                                             getApplicationContext(),
-                                            "Registration failed!!"
-                                                    + " Please try again later",
+                                            "Email is already in use",
                                             Toast.LENGTH_LONG)
                                     .show();
 
@@ -123,21 +127,5 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
 }
