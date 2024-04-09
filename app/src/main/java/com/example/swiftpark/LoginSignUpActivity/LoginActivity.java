@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText login_email, login_password;
     Button login_button, register_button;
     FirebaseAuth mAuth;
+
+    private String UID = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +67,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            // do nothing
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -106,7 +107,6 @@ public class LoginActivity extends AppCompatActivity {
                                 .show();
 
                         FirebaseUser user = mAuth.getCurrentUser();
-
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                     } else {
