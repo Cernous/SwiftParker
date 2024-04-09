@@ -60,10 +60,7 @@ public class settings extends DialogFragment {
         });
 
 
-//        demoButton.setOnClickListener(v -> {
-//            spotInfoDialog dialog = new spotInfoDialog(this);
-//            dialog.show(getParentFragmentManager(), "spotInfoDialog");
-//        });
+
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

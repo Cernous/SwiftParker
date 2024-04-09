@@ -27,7 +27,7 @@ public class ParkingLotActivity extends AppCompatActivity {
     private RecyclerView parkingSpotRecycler;
     private ParkingSpotAdapter spotAdapter;
     private Button returnButton;
-    private TextView lotTextView, spotsFilledText;
+    private TextView lotTextView, spotsFilledText, noSpotsText;
     private ProgressBar progressBar;
 
 
@@ -41,6 +41,7 @@ public class ParkingLotActivity extends AppCompatActivity {
         returnButton = findViewById(R.id.returnButton);
         lotTextView = findViewById((R.id.lotTextView));
         spotsFilledText = findViewById(R.id.spotsFilledText);
+        noSpotsText = findViewById(R.id.noSpotsText);
         parkingSpotRecycler = findViewById(R.id.parkingSpotRecycler);
         progressBar = findViewById(R.id.progressBar);
 
@@ -63,8 +64,8 @@ public class ParkingLotActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<ParkingSpot> spots = new ArrayList<>();
-                int totalSpots = 0;
-                int availableSpots = 0;
+                int totalSpots;
+                int availableSpots;
                 int spotsFilled = 0;
                 mDatabase = FirebaseDatabase.getInstance().getReference().child("parking_lots").child(updatedLot);
                 if (updatedLot.equals("Demo")) {
@@ -98,7 +99,16 @@ public class ParkingLotActivity extends AppCompatActivity {
 
                 int availablePercentage = (int) ((float) spotsFilled / totalSpots * 100);
 
-                progressBar.setProgress(availablePercentage);
+                if (availablePercentage == 0){
+                    progressBar.setVisibility(View.GONE);
+                    spotsFilledText.setVisibility(View.GONE);
+
+
+                }
+                else {
+                    progressBar.setProgress(availablePercentage);
+                    noSpotsText.setVisibility(View.GONE);
+                }
 
                 spotAdapter.setParkingSpots(spots);
                 spotAdapter.notifyDataSetChanged();
