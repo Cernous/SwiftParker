@@ -20,7 +20,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/whitney"
-        android:text="Spots"
+        android:text="Favorite Lots"
         android:textColor="@color/white"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
         android:layout_marginBottom="75dp"
         android:backgroundTint="#9C1640"
         android:elevation="16dp"
-        android:text="Add Favourite Spot"
+        android:text="Add Favourite Lot"
 
         android:textAllCaps="false"
         app:cornerRadius="50dp"

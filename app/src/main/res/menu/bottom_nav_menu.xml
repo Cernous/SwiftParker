@@ -15,7 +15,7 @@
     <item
         android:id="@+id/navigation_spot"
         android:icon="@drawable/spots_24"
-        android:title="Favorite Spots" />
+        android:title="Favorite Lots" />
 
     <item
         android:id="@+id/navigation_profile"
